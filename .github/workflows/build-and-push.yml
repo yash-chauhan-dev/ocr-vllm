@@ -1,0 +1,36 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docker/**"
+      - "config/**"
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GH_USERNAME }}
+          password: ${{ secrets.GHCR_PAT }}
+
+      - name: Build and push VLM image
+        run: |
+          docker build -t ghcr.io/${{ secrets.GH_USERNAME }}/paddleocr-vlm-server:latest -f docker/paddleocr-vlm-server.Dockerfile .
+          docker push ghcr.io/${{ secrets.GH_USERNAME }}/paddleocr-vlm-server:latest
+
+      - name: Build and push Pipeline image
+        run: |
+          docker build -t ghcr.io/${{ secrets.GH_USERNAME }}/paddleocr-vl-api:latest -f docker/paddleocr-vl-api.Dockerfile .
+          docker push ghcr.io/${{ secrets.GH_USERNAME }}/paddleocr-vl-api:latest
