@@ -2,7 +2,7 @@
 set -e
 source scripts/common.sh
 
-echo "Waiting for VLM Pod: $VLM_POD_ID"
+echo "Waiting for VLM Pod"
 
 for i in {1..40}; do
   STATUS=$(curl -s -H "$AUTH_HEADER" "$API_URL/pods/$VLM_POD_ID" | jq -r '.desiredStatus')
