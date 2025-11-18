@@ -1,0 +1,40 @@
+name: Deploy to Runpod
+
+on:
+  # workflow_run:
+  #   workflows: ["Build and Push Docker Images"]
+  #   types: [completed]
+
+  workflow_dispatch:   # Manual trigger
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
+      GH_USERNAME: ${{ secrets.GH_USERNAME }}
+      CONTAINER_REGISTRY_AUTH_ID: ${{ secrets.CONTAINER_REGISTRY_AUTH_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+
+      - name: Deploy VLM Pod
+        run: ./scripts/deploy_vlm_pod.sh
+
+      - name: Wait for VLM Pod to start
+        run: ./scripts/wait_for_pod.sh
+
+      - name: Get VLM Endpoint
+        run: ./scripts/get_vlm_endpoint.sh
+
+      - name: Deploy VL API Pod
+        run: ./scripts/deploy_vl_api_pod.sh
