@@ -3,9 +3,8 @@ name: Build and Push Docker Images
 on:
   push:
     branches: [main]
-    # paths:
-    #   - "docker/**"
-    #   - "config/**"
+    paths:
+      - "docker/**"
 
 permissions:
   contents: read
