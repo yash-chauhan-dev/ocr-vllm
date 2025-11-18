@@ -5,8 +5,7 @@ on:
     workflows: ["Build and Push Docker Images"]
     types: [completed]
 
-  workflow_dispatch:   # Manual trigger
-
+  workflow_dispatch: # Manual trigger
 
 jobs:
   deploy:
@@ -35,6 +34,12 @@ jobs:
 
       - name: Deploy VL API Pod
         run: ./scripts/deploy_vl_api_pod.sh
-        
+
       - name: Get VL API Endpoint
         run: ./scripts/get_vl_api_endpoint.sh
+
+      - name: Health Check VLM Endpoint
+        run: ./scripts/healthcheck_vlm_pod.sh
+
+      - name: Health Check VL API Endpoint
+        run: ./scripts/healthcheck_vl_api_pod.sh
