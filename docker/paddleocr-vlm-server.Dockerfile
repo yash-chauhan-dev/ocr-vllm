@@ -21,4 +21,7 @@ RUN if [ "${BUILD_FOR_OFFLINE}" = 'true' ]; then \
     && rm -f PaddleOCR-VL_infer.tar; \
     fi
 
-CMD ["paddleocr", "genai_server", "--model_name", "PaddleOCR-VL-0.9B", "--host", "0.0.0.0", "--port", "8080", "--backend", "vllm"]
+ENV GENAI_SERVER_HOST=0.0.0.0
+ENV GENAI_SERVER_PORT=8080
+
+CMD ["paddleocr", "genai_server", "--model_name", "PaddleOCR-VL-0.9B", "--backend", "vllm"]

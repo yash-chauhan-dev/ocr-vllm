@@ -52,8 +52,8 @@ COPY --chown=paddleocr:paddleocr config/pipeline_config.yaml /home/paddleocr/pip
 
 EXPOSE 8080
 
-# Secure dynamic IP substitution at runtime
-# GENAI_SERVER_URL is injected via environment variable
-# envsubst substitutes variables without requiring container modification
+ENV GENAI_SERVER_HOST=0.0.0.0
+ENV GENAI_SERVER_PORT=8080
+
 ENTRYPOINT ["/bin/bash", "-c"]
 CMD ["if [ -n \"$GENAI_SERVER_URL\" ]; then envsubst < /home/paddleocr/pipeline_config.yaml > /tmp/pipeline_config.yaml && exec paddlex --serve --pipeline /tmp/pipeline_config.yaml; else exec paddlex --serve --pipeline /home/paddleocr/pipeline_config.yaml; fi"]
