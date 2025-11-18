@@ -12,8 +12,6 @@ for i in {1..40}; do
 
   if [[ "$VL_API_ENDPOINT" != "null" && "$VL_API_ENDPOINT" != "" ]]; then
     echo "VL API Pod is ready"
-    echo "::add-mask::$VL_API_ENDPOINT"
-    echo "VL_API_ENDPOINT=$VL_API_ENDPOINT" >> "$GITHUB_ENV"
     exit 0
   fi
 
