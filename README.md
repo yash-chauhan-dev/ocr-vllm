@@ -71,3 +71,7 @@ POST https://<runpod-endpoint>/layout-parsing
 ## License
 
 This project is licensed under the MIT License – see the `LICENSE` file for details.
+
+## 🤝 Contributions
+
+PRs are welcome for improvements related to automation, deployment templates, or optimizations.
