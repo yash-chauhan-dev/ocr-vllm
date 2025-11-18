@@ -1,7 +1,8 @@
 # OCR-vLLM Deployment
 
 This repository contains an automated pipeline for building, containerizing, and deploying an OCR-vLLM inference service using **GitHub Actions**, **Docker**, and **RunPod**.  
-It is not a software implementation of OCR or vLLM itself—instead, it provides the infrastructure and automation required to reliably deploy the model as an inference endpoint.
+
+It is not a software implementation of OCR or vLLM itself. Instead, it provides the infrastructure and automation required to reliably deploy the model as an inference endpoint.
 
 
 ## Overview
