@@ -12,8 +12,6 @@ for i in {1..40}; do
 
   if [[ "$VLM_ENDPOINT" != "null" && "$VLM_ENDPOINT" != "" ]]; then
     echo "VLM Pod is ready"
-    echo "::add-mask::$VLM_ENDPOINT"
-    echo "VLM_ENDPOINT=$VLM_ENDPOINT" >> "$GITHUB_ENV"
     exit 0
   fi
 
