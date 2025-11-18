@@ -4,7 +4,7 @@ source scripts/common.sh
 
 echo "Deploying VL API Pod..."
 
-PIPELINE_RESPONSE=$(
+VL_API_RESPONSE=$(
   curl -s -X POST "$API_URL/pods" \
     -H "$AUTH_HEADER" \
     -H "Content-Type: application/json" \
@@ -34,3 +34,9 @@ PIPELINE_RESPONSE=$(
       \"volumeMountPath\": \"/workspace\"
     }"
 )
+
+echo "$VL_API_RESPONSE" > .vl_api_response.json
+
+VL_API_POD_ID=$(jq -r '.id' .vl_api_response.json)
+
+echo "VLM_POD_ID=$VL_API_POD_ID" >> "$GITHUB_ENV"

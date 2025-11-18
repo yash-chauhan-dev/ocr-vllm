@@ -2,17 +2,16 @@
 set -e
 source scripts/common.sh
 
-echo "Fetching endpoint for VLM Pod"
+echo "Fetching endpoint for VL API Pod"
 
 # Wait for publicIp to become available
 for i in {1..40}; do
 
-  VLM_ENDPOINT=$(curl -s -H "$AUTH_HEADER" "$API_URL/pods/$VLM_POD_ID" \
+  VL_API_ENDPOINT=$(curl -s -H "$AUTH_HEADER" "$API_URL/pods/$VL_API_POD_ID" \
     | jq -r '.publicIp')
 
-  if [[ "$VLM_ENDPOINT" != "null" && "$VLM_ENDPOINT" != "" ]]; then
-    echo "VLM Pod is ready"
-    echo "VLM_ENDPOINT=$VLM_ENDPOINT" >> "$GITHUB_ENV"
+  if [[ "$VL_API_ENDPOINT" != "null" && "$VL_API_ENDPOINT" != "" ]]; then
+    echo "VL API Pod is ready"
     exit 0
   fi
 
