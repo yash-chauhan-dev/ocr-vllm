@@ -31,10 +31,8 @@ VLM_RESPONSE=$(
     }"
 )
 
-echo $VLM_RESPONSE
 echo "$VLM_RESPONSE" > .vlm_response.json
 
 VLM_POD_ID=$(jq -r '.id' .vlm_response.json)
 
-echo "VLM_POD_ID=$VLM_POD_ID"
 echo "VLM_POD_ID=$VLM_POD_ID" >> "$GITHUB_ENV"

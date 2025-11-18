@@ -2,7 +2,7 @@
 set -e
 source scripts/common.sh
 
-echo "Deploying Pipeline Pod..."
+echo "Deploying VL API Pod..."
 
 PIPELINE_RESPONSE=$(
   curl -s -X POST "$API_URL/pods" \
@@ -25,10 +25,10 @@ PIPELINE_RESPONSE=$(
         \"8080/http\",
         \"22/tcp\"
       ],
-      \"env\": [
-        {\"key\": \"GENAI_SERVER_URL\", \"value\": \"$VLM_ENDPOINT\"},
-        {\"key\": \"BUILD_FOR_OFFLINE\", \"value\": \"true\"}
-      ],
+      \"env\": {
+        \"GENAI_SERVER_URL\": \"$VLM_ENDPOINT\",
+        \"BUILD_FOR_OFFLINE\": \"true\"
+      },
       \"vcpuCount\": 9,
       \"volumeInGb\": 50,
       \"volumeMountPath\": \"/workspace\"
