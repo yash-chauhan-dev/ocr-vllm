@@ -1,9 +1,9 @@
 name: Deploy to Runpod
 
 on:
-  workflow_run:
-    workflows: ["Build and Push Docker Images"]
-    types: [completed]
+  # workflow_run:
+  #   workflows: ["Build and Push Docker Images"]
+  #   types: [completed]
 
   workflow_dispatch: # Manual trigger
 
@@ -43,3 +43,4 @@ jobs:
 
       - name: Health Check VL API Endpoint
         run: ./scripts/healthcheck_vl_api_pod.sh
+
