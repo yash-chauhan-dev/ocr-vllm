@@ -39,4 +39,4 @@ echo "$VL_API_RESPONSE" > .vl_api_response.json
 
 VL_API_POD_ID=$(jq -r '.id' .vl_api_response.json)
 
-echo "VLM_POD_ID=$VL_API_POD_ID" >> "$GITHUB_ENV"
+echo "VL_API_POD_ID=$VL_API_POD_ID" >> "$GITHUB_ENV"
