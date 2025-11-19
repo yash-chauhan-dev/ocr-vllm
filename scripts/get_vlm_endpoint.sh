@@ -11,6 +11,8 @@ for i in {1..40}; do
     | jq -r '.publicIp')
 
   if [[ "$VLM_ENDPOINT" != "null" && "$VLM_ENDPOINT" != "" ]]; then
+    echo "::add-mask::$VLM_ENDPOINT"
+    echo "VLM_ENDPOINT=$VLM_ENDPOINT" >> "$GITHUB_ENV"
     echo "VLM Pod is ready"
     exit 0
   fi
