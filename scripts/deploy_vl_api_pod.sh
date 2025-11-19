@@ -26,7 +26,7 @@ VL_API_RESPONSE=$(
         \"22/tcp\"
       ],
       \"env\": {
-        \"GENAI_SERVER_URL\": \"$VLM_ENDPOINT\",
+        \"GENAI_SERVER_URL\": \"https://$VLM_POD_ID-8080.proxy.runpod.net\",
         \"BUILD_FOR_OFFLINE\": \"true\"
       },
       \"vcpuCount\": 9,
